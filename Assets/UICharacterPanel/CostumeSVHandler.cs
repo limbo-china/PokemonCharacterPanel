@@ -5,22 +5,24 @@ using UnityEngine.UI;
 
 public class CostumeSVHandler : MonoBehaviour
 {
+    public string part;  //暂时
+    public string[] pngNames; //暂时
     public Transform content;
     RectTransform m_contentRect;
     public GameObject itemPrefab;
-    public Sprite costumeImage; ////后台拉取
     public Button buttonLeft;
     public Button buttonRight;
 
     public Sprite unselectedBorder, selectedBorder;
+    public PreviewHandler preview;
 
     public float itemSpacing = 60f;
     public float itemWidth = 120f;
     public float selectedScale = 1.3f;
 
     List<Transform> itemsList = new List<Transform>();
+    List<Sprite[]> spritesList = new List<Sprite[]>();
     int currentSelectedItemIndex, preSelectedItemIndex;
-    int _count = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +30,15 @@ public class CostumeSVHandler : MonoBehaviour
         currentSelectedItemIndex = 0;
         preSelectedItemIndex = 0;
         m_contentRect = (RectTransform)content;
-        
-        DrawItems(_count);
+
+        foreach(string png in pngNames)
+        {
+            spritesList.Add(loadSpritesByName(png));
+        }
+
+        DrawItems(spritesList.Count);
+
+        UpdatePreviewAtlas();
         UpdatePosition();
 
         buttonLeft.onClick.AddListener(OnClickPre);
@@ -43,29 +52,40 @@ public class CostumeSVHandler : MonoBehaviour
         GameObject obj = Instantiate(itemPrefab);
         obj.transform.SetParent(content);
         DrawItemContent(obj, false, count - 1);
-
-
         for (int i = 0; i < count; i++)
         {
             obj = Instantiate(itemPrefab);
             obj.transform.SetParent(content);
             itemsList.Add(obj.transform);
 
-            DrawItemContent(obj, i == currentSelectedItemIndex, i);          
+            DrawItemContent(obj, i == currentSelectedItemIndex, i);      
+            
         }
         obj = Instantiate(itemPrefab);
         obj.transform.SetParent(content);
         DrawItemContent(obj, false, 0);
+
+    }
+
+    Sprite[] loadSpritesByName(string name)
+    {
+        return Resources.LoadAll<Sprite>("Costumes/" + part + "/" + name);
     }
 
     void DrawItemContent(GameObject item, bool selected, int index)
     {
         item.transform.localScale = Vector3.one * (selected ? selectedScale : 1.0f );
         item.transform.GetChild(0).GetComponent<Image>().sprite = selected ? selectedBorder : unselectedBorder;
-        item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = costumeImage;
+        item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = spritesList[index][0];
         item.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = index.ToString();
     }
 
+    void OnCurrentIndexChanged()
+    {
+        UpdatePosition();
+        UpdateItemBorder();
+        UpdatePreviewAtlas();
+    }
     void UpdatePosition()
     {
         float contentWidth = (itemsList.Count + 2) * itemWidth + (itemsList.Count + 1) * itemSpacing;
@@ -81,6 +101,11 @@ public class CostumeSVHandler : MonoBehaviour
         itemsList[currentSelectedItemIndex].GetChild(0).GetComponent<Image>().sprite = selectedBorder;
         itemsList[currentSelectedItemIndex].localScale = Vector3.one * selectedScale;
     }
+
+    void UpdatePreviewAtlas()
+    {
+        preview.atlas = spritesList[currentSelectedItemIndex];
+    }
     void OnClickPre()
     {
         preSelectedItemIndex = currentSelectedItemIndex;
@@ -89,9 +114,7 @@ public class CostumeSVHandler : MonoBehaviour
         {
             currentSelectedItemIndex = itemsList.Count - 1;
         }
-
-        UpdateItemBorder();
-        UpdatePosition();
+        OnCurrentIndexChanged();
     }
     void OnClickNext()
     {
@@ -101,7 +124,6 @@ public class CostumeSVHandler : MonoBehaviour
         {
             currentSelectedItemIndex = 0;
         }
-        UpdateItemBorder();
-        UpdatePosition();
+        OnCurrentIndexChanged();
     }
 }
