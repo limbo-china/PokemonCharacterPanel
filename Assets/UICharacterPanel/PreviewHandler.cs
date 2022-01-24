@@ -7,7 +7,7 @@ public class PreviewHandler : MonoBehaviour
 
     public Image sprite;
     public Sprite[] atlas;
-    float speed = 0.2f;
+    float speed = 0.25f;
     float time;
     int index;
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class PreviewHandler : MonoBehaviour
     {
         if(time > speed)
         {
-            sprite.sprite = atlas[index];
+            sprite.sprite = atlas[index + 8];
             if (index >= 3) { index = 0; }
             index++;
             time = 0;

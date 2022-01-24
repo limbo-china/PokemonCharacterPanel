@@ -1351,8 +1351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: head
   pngNames:
-  - shoaib_run
-  - tailang_run
+  - shoaib_walk
+  - tailang_walk
   content: {fileID: 614530076}
   itemPrefab: {fileID: 2220801063424171196, guid: 93332bdd9bd8d304ca492299d3ba6139, type: 3}
   buttonLeft: {fileID: 1586141927}
@@ -3801,8 +3801,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: base
   pngNames:
-  - dark_run
-  - pale_run
+  - dark_walk
+  - pale_walk
   content: {fileID: 393328720}
   itemPrefab: {fileID: 2220801063424171196, guid: 93332bdd9bd8d304ca492299d3ba6139, type: 3}
   buttonLeft: {fileID: 1191815281}
@@ -3935,8 +3935,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   part: body
   pngNames:
-  - shoaib_run
-  - tailang_run
+  - shoaib_walk
+  - tailang_walk
   content: {fileID: 1556562464}
   itemPrefab: {fileID: 2220801063424171196, guid: 93332bdd9bd8d304ca492299d3ba6139, type: 3}
   buttonLeft: {fileID: 1286676761}
@@ -8052,6 +8052,7 @@ GameObject:
   - component: {fileID: 1747528641}
   - component: {fileID: 1747528640}
   - component: {fileID: 1747528639}
+  - component: {fileID: 1747528642}
   m_Layer: 5
   m_Name: FinishButton
   m_TagString: Untagged
@@ -8161,6 +8162,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747528637}
   m_CullTransparentMesh: 1
+--- !u!114 &1747528642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747528637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a349bf3672d45b499f401a34faf39b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headPreview: {fileID: 1392030858}
+  bodyPreview: {fileID: 1844434635}
 --- !u!1 &1764104528
 GameObject:
   m_ObjectHideFlags: 0
@@ -8993,8 +9008,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -133.3651, y: 100.971344}
-  m_SizeDelta: {x: 225.3126, y: 225.3126}
+  m_AnchoredPosition: {x: -151, y: 70}
+  m_SizeDelta: {x: 280.831, y: 280.831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1954232467
 CanvasRenderer:

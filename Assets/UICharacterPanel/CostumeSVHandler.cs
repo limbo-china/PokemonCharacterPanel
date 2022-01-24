@@ -76,7 +76,7 @@ public class CostumeSVHandler : MonoBehaviour
     {
         item.transform.localScale = Vector3.one * (selected ? selectedScale : 1.0f );
         item.transform.GetChild(0).GetComponent<Image>().sprite = selected ? selectedBorder : unselectedBorder;
-        item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = spritesList[index][0];
+        item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = spritesList[index][8];
         item.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = index.ToString();
     }
 
