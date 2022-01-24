@@ -8176,6 +8176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headPreview: {fileID: 1392030858}
   bodyPreview: {fileID: 1844434635}
+  basePreview: {fileID: 1361406715}
 --- !u!1 &1764104528
 GameObject:
   m_ObjectHideFlags: 0
