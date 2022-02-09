@@ -16,8 +16,8 @@ public class CostumeSVHandler : MonoBehaviour
     public Sprite unselectedBorder, selectedBorder;
     public PreviewHandler preview;
 
-    public float itemSpacing = 60f;
-    public float itemWidth = 120f;
+    public float itemSpacing = 25f;
+    public float itemWidth = 50f;
     public float selectedScale = 1.3f;
 
     List<Transform> itemsList = new List<Transform>();
